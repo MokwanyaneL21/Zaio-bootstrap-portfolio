@@ -1,65 +1,141 @@
-/*
- * Globals
- */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #f8f9fa;
+  --primary-color: #007bff;
+}
 
-
-
-/*
- * Base structure
- */
-
-body {
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --card-bg: #1f1f1f;
+    --primary-color: #0d6efd;
+  }
 }
 
 
-
-/*
- * Header
- */
-
- *{
+*{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
  }
- .banner-wrap {
-     background-image: url(./assets/banner.JPG);
-     background-size: 100%;
-     background-repeat: no-repeat;
-     background-position: center 20%;
-     position: relative;
-     z-index: 1;
- }
- .overlay {
-     z-index: -1;
-     height: 100%;
-     width: 100%;
-     background: black;
-     opacity: 50%;
-     position: absolute;
-     top: 0;
- }
 
-.nav-masthead .nav-link {
-  padding: .25rem 0;
+header {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-dark {
+  border-color: var(--text-color);
+  color: var(--text-color);
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+
+/* HERO WRAPPER */
+.banner-wrap {
+  height: 100vh;
+  width: 100%;
+  background: url("./assets/background\ image.jpg") center / cover no-repeat;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* DARK OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+/* HERO CONTENT */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 1rem;
+}
+
+/* RESPONSIVE TEXT */
+.banner-content {
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
-  color: rgba(255, 255, 255, .5);
-  background-color: transparent;
-  border-bottom: .25rem solid transparent;
 }
 
-.nav-masthead .nav-link:hover,
-.nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, .25);
+.lead {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
 }
 
-.nav-masthead .nav-link + .nav-link {
-  margin-left: 1rem;
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0;
+  margin: 0 0.75rem;
+  color: white;
 }
 
-.nav-masthead .active {
-  color: #fff;
-  border-bottom-color: #fff;
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* makes the card take full column height */
+}
+
+.card-body {
+  flex: 1 1 auto; /* allows content to grow */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body .btn-group {
+  margin-top: auto; /* pushes buttons to the bottom */
+}
+
+.mark, mark {
+  padding: .2em;
+  background-color: #f9f9f2;
+  border-radius: 10px;
+}
+
+footer {
+  border-top: 1px solid rgba(255,255,255,0.2);
 }
